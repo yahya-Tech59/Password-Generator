@@ -1,6 +1,12 @@
 import { useState } from "react";
 import "./Components/Style.scss";
 import { MdDelete } from "react-icons/md";
+import {
+  number,
+  upperCaseLetters,
+  lowerCaseLetters,
+  specialCharacters,
+} from "./Components/Characters";
 
 const App = () => {
   const [password, setPassword] = useState("");
@@ -10,11 +16,42 @@ const App = () => {
   const [numbers, setNumbers] = useState(true);
   const [symbols, setSymbols] = useState(true);
 
-  const handleGeneratorPassword = () => {};
+  const handleGeneratorPassword = () => {
+    if (!uppercase && !lowercase && !numbers && !symbols) {
+      alert("you must select at least one option");
+    }
 
-  const passwordCreator = () => {};
+    let characterList = "";
+    if (uppercase) {
+      characterList += upperCaseLetters;
+    }
 
-  const generateRandomIndex = () => {};
+    if (lowercase) {
+      CharacterData += lowerCaseLetters;
+    }
+
+    if (numbers) {
+      characterList += number;
+    }
+
+    if (symbols) {
+      characterList += specialCharacters;
+    }
+  };
+
+  const passwordCreator = (characterList) => {
+    let password = "";
+    const characterListLength = characterList.length;
+
+    for (let i = 0; i < passwordLength; i++) {
+      const characterIndex = getRandomIndex(characterListLength);
+      password = password + characterList.charAt(characterIndex);
+    }
+  };
+
+  const getRandomIndex = (limit) => {
+    return Math.round(Math.random() * limit);
+  };
 
   return (
     <div className="container">
